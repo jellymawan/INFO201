@@ -1,0 +1,61 @@
+---
+title: "Shootings in 2018"
+author: "Jeleen Limawan"
+date: "5/18/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("analysis.R")
+```
+
+
+## Summary Information
+In the year 2018, there were a total of `r shootings_num` shootings in the United States. Of the `r shootings_num` shootings, a total of `r lives_lost` lives were lost. The city where most of the shootings occur was `r impact`. The event with the most injuries was the `r most_injured$city` shooting which occured on `r most_injured$date`, with a total of `r most_injured$num_injured` people injured. The event with the most deaths was the `r most_death$city` shooting which occured on `r most_death$date`, with a total of `r most_death$num_killed` deaths.
+
+[source](https://www.gunviolencearchive.org/reports/mass-shooting)
+
+## Summary Table
+```{r echo=FALSE}
+library(knitr)
+kable(summary_table)
+```
+
+According to this table, the month where most number of people died from a shooting related incident in 2018 was in the month of February. It is the same month for the most numbers of injuries, too. Interestingly though, as you will see later, the month of February wasn't where most of the shootings occured.
+
+
+## Shooting in Seattle, Washington
+In `r one_incident$date`, a shooting happened in `r one_incident$city`. The shooting occured at around 4 a.m. in `r one_incident$address`. The `r one_incident$num_killed` deceased victims died at seperate locations. `r one_incident$num_injured` others were injured by gunshot wounds but survived. Additionally, there were 3 other injuries that were evaluated for "non shooting injuries."
+
+[source](https://www.cbsnews.com/news/skyway-washington-shooting-biker-club-fight-near-seattle-today-2018-04-29/)
+
+
+## Where do most shootings occur?
+
+```{r map, echo=FALSE}
+map
+```
+
+From the map, we can easily see that most shootings occur on the east cost. Before, we stated that the city most impacted by the shootings was `r impact`. We see in this map that although `r impact`'s marker does appear to be very dark, it wasn't the largest. This tells us that even though `r impact` is the city most impacted, the number of deaths and injuries in each shooting in `r impact` is fairly consistent. 
+
+Other places like Santa Fe and Parkand, for example, had one major shooting disaster. From this map, we see that although we've heard of the events relating to the cities with big markers, we rarely hear anything about the cities with the smaller markers and we fail to realize just how much impact those cities suffer from gun violence.
+
+## What was the most Dangerous Month in 2018?
+```{r most_dangerous_month_g, echo=FALSE}
+most_shootings_month_g
+```
+
+According to the graph, the most dangerous month in 2018 was the month of `r months`. Although `r months` was where the most number of shootings occured, it wasn't the month with the highest average number of people killed. In fact, the month which had the highest average of deaths and injuries had the least shootings in 2018.
+
+
+## Best and Worst Days to go out in the month of `r months`
+
+As noted above, the most dangerous month to go out was `r months` due to most of the shootings happening at around that time. However, what if you wanted to go out during the month of `r months` and you're worried about any potential shootings that might happen? Well to lessen your worries, I have compiled a chart that shows what days were the most dangerous and what days were the safest in the month of `r months`.
+
+```{r most_killed_day_g, echo=FALSE}
+most_killed_day_g
+```
+According to the graph, the most dangerous day to go out was Sunday and the safest days to go out was Wednesday and Friday.
+
+I used a bar graph for both plots because I thought it would be the easiest to see the difference in. I used the plotly library because I wanted the give the audience and easy way to see the exact numbers (hover function). 
